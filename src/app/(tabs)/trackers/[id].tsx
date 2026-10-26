@@ -28,6 +28,8 @@ function describeRecurrence(r: Recurrence, t: TFunction): string {
     case 'monthly':
       return t('tracker.repeatSummary.monthly', { day: r.day });
     case 'custom':
+      // "Every 1 day" reads as "Every day"; kept separate because Tagalog plurals lump 1–3 together.
+      if (r.every === 1) return t(`tracker.repeatSummary.every${r.unit === 'day' ? 'Day' : r.unit === 'week' ? 'Week' : 'Month'}`);
       return t(`tracker.repeatSummary.${r.unit}`, { count: r.every });
   }
 }

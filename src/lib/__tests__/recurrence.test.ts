@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 
-import { nextOccurrence, type Recurrence } from '../recurrence';
+import { nextOccurrence, previousOccurrence, type Recurrence } from '../recurrence';
 
 describe('nextOccurrence', () => {
   it('one-time has no next occurrence', () => {
@@ -76,5 +76,18 @@ describe('nextOccurrence', () => {
         '2027-04-27',
       );
     });
+  });
+});
+
+describe('previousOccurrence', () => {
+  it('steps back one occurrence for every recurrence type', () => {
+    expect(previousOccurrence({ type: 'none' }, '2026-11-15')).toBeNull();
+    expect(previousOccurrence({ type: 'weekly' }, '2026-11-03')).toBe('2026-10-27');
+    expect(previousOccurrence({ type: 'monthly', day: 31 }, '2027-03-31')).toBe('2027-02-28');
+    expect(previousOccurrence({ type: 'twice_monthly', days: [15, 30] }, '2027-03-15')).toBe('2027-02-28');
+    expect(previousOccurrence({ type: 'twice_monthly', days: [15, 30] }, '2027-02-28')).toBe('2027-02-15');
+    expect(previousOccurrence({ type: 'custom', every: 1, unit: 'day' }, '2026-10-28')).toBe('2026-10-27');
+    expect(previousOccurrence({ type: 'custom', every: 2, unit: 'week' }, '2026-11-10')).toBe('2026-10-27');
+    expect(previousOccurrence({ type: 'custom', every: 3, unit: 'month' }, '2027-02-28')).toBe('2026-11-28');
   });
 });

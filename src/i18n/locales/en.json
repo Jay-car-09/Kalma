@@ -13,8 +13,6 @@
     "nothingDue": "Nothing due this month.",
     "nextDue": "Next due",
     "today": "Due today",
-    "inDays_one": "Tomorrow",
-    "inDays_other": "In {{count}} days",
     "needsAttention": "Needs attention",
     "wasDue": "Was due {{date}}",
     "moreOverdue": "+{{count}} more",
@@ -30,7 +28,9 @@
     "byType": "Due this month by type",
     "onTime": "On-time record",
     "onTimeCount": "{{onTime}} of {{total}} payments on time",
-    "byUrgency": "Active trackers by urgency"
+    "byUrgency": "Active trackers by urgency",
+    "tomorrow": "Tomorrow",
+    "inDays": "In {{count}} days"
   },
   "trackers": {
     "title": "Trackers",
@@ -66,7 +66,17 @@
     "developer": "Developer",
     "pretendPaid": "Pretend Paid (dev only)",
     "pretendPaidHint": "Hides ads to preview the Paid tier. Only visible while developing.",
-    "amountPreview": "Amount preview"
+    "amountPreview": "Amount preview",
+    "reminders": "Reminders",
+    "reminderTime": "Reminder time",
+    "showAmounts": "Show amounts in notifications",
+    "showAmountsHint": "Off keeps amounts private on your lock screen.",
+    "permissionOff": "Notifications are off for Kalma, so reminders can't reach you.",
+    "openSettings": "Open notification settings",
+    "testReminder": "Send a test reminder in 10 seconds",
+    "testScheduled": "Test reminder set. Lock your phone or leave the app to see it.",
+    "scheduledReminders": "Scheduled reminders ({{count}})",
+    "noScheduled": "Nothing scheduled."
   },
   "ad": {
     "label": "Ad"
@@ -77,7 +87,9 @@
     "save": "Save",
     "back": "Back",
     "errorTitle": "Something went wrong",
-    "saveFailed": "Your tracker wasn't saved. Please try again."
+    "saveFailed": "Your tracker wasn't saved. Please try again.",
+    "notNow": "Not now",
+    "continue": "Continue"
   },
   "limits": {
     "trackers": {
@@ -147,12 +159,12 @@
     "repeatSummary": {
       "twice": "Twice a month · {{first}} and {{second}}",
       "monthly": "Monthly · day {{day}}",
-      "day_one": "Every day",
-      "day_other": "Every {{count}} days",
-      "week_one": "Every week",
-      "week_other": "Every {{count}} weeks",
-      "month_one": "Every month",
-      "month_other": "Every {{count}} months"
+      "everyDay": "Every day",
+      "day": "Every {{count}} days",
+      "everyWeek": "Every week",
+      "week": "Every {{count}} weeks",
+      "everyMonth": "Every month",
+      "month": "Every {{count}} months"
     },
     "interestValue": {
       "monthly": "{{rate}}% a month",
@@ -239,5 +251,30 @@
     },
     "deleteAdjustmentTitle": "Delete this balance update?",
     "deleteAdjustmentMessage": "The remaining balance will be recalculated."
+  },
+  "reminders": {
+    "channelName": "Due reminders",
+    "debt": {
+      "dueIn": "Due in {{count}} days",
+      "dueTomorrow": "Due tomorrow",
+      "dueToday": "Due today",
+      "wasDueYesterday": "Was due yesterday",
+      "wasDue": "Was due {{count}} days ago",
+      "expectedIn": "Expected in {{count}} days",
+      "expectedTomorrow": "Expected tomorrow",
+      "expectedToday": "Expected today",
+      "wasExpectedYesterday": "Was expected yesterday",
+      "wasExpected": "Was expected {{count}} days ago"
+    },
+    "permissionTitle": "Turn on reminders?",
+    "permissionMessage": "Kalma will send a quiet reminder before each due date. You can change this anytime in Settings.",
+    "off": "Notifications off",
+    "testTitle": "Kalma test reminder",
+    "testBody": "Reminders are working.",
+    "kind": {
+      "before_due": "Before due",
+      "due_day": "Due day",
+      "overdue": "Overdue nudge"
+    }
   }
 }

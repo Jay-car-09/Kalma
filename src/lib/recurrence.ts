@@ -61,3 +61,28 @@ export function countOverdue(recurrence: Recurrence, dueDate: string, today: str
   }
   return count;
 }
+
+/** The occurrence just before `date`, or null for one-time trackers. Mirrors nextOccurrence. */
+export function previousOccurrence(recurrence: Recurrence, date: string): string | null {
+  switch (recurrence.type) {
+    case 'none':
+      return null;
+    case 'weekly':
+      return addDays(date, -7);
+    case 'custom': {
+      if (recurrence.unit === 'day') return addDays(date, -recurrence.every);
+      if (recurrence.unit === 'week') return addDays(date, -recurrence.every * 7);
+      const [y, m, d] = date.split('-').map(Number);
+      const [year, month] = shiftMonth(y, m, -recurrence.every);
+      return clamped(year, month, d);
+    }
+    default: {
+      // Anchored days of the month: walk forward from two months back to the last one before `date`.
+      let previous: string | null = null;
+      for (let d = nextOccurrence(recurrence, addDays(date, -62)); d !== null && d < date; d = nextOccurrence(recurrence, d)) {
+        previous = d;
+      }
+      return previous;
+    }
+  }
+}

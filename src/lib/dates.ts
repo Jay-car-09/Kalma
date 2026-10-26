@@ -69,3 +69,11 @@ export function formatMonth(date: string, language: string, width: 'long' | 'sho
     timeZone: 'UTC',
   }).format(toUTC(date.slice(0, 7) + '-01'));
 }
+
+/** 'HH:MM' → localized clock time, e.g. "9:00 AM". */
+export function formatTime(time: string, language: string): string {
+  const [h, m] = time.split(':').map(Number);
+  return new Intl.DateTimeFormat(language === 'tl' ? 'fil-PH' : 'en-PH', { hour: 'numeric', minute: '2-digit' }).format(
+    new Date(2000, 0, 1, h, m),
+  );
+}

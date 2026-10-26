@@ -13,8 +13,6 @@
     "nothingDue": "Walang due ngayong buwan.",
     "nextDue": "Susunod na due",
     "today": "Due ngayon",
-    "inDays_one": "Bukas",
-    "inDays_other": "Sa loob ng {{count}} araw",
     "needsAttention": "Kailangang asikasuhin",
     "wasDue": "Na-due noong {{date}}",
     "moreOverdue": "+{{count}} pa",
@@ -30,7 +28,9 @@
     "byType": "Due ngayong buwan ayon sa uri",
     "onTime": "Record ng bayad sa oras",
     "onTimeCount": "{{onTime}} sa {{total}} na bayad ang nasa oras",
-    "byUrgency": "Mga aktibong tracker ayon sa pagka-urgent"
+    "byUrgency": "Mga aktibong tracker ayon sa pagka-urgent",
+    "tomorrow": "Bukas",
+    "inDays": "Sa loob ng {{count}} araw"
   },
   "trackers": {
     "title": "Trackers",
@@ -66,7 +66,17 @@
     "developer": "Developer",
     "pretendPaid": "Pretend Paid (dev only)",
     "pretendPaidHint": "Itinatago ang ads para makita ang Paid tier. Makikita lang ito habang dine-develop.",
-    "amountPreview": "Halimbawa ng halaga"
+    "amountPreview": "Halimbawa ng halaga",
+    "reminders": "Mga paalala",
+    "reminderTime": "Oras ng paalala",
+    "showAmounts": "Ipakita ang halaga sa notifications",
+    "showAmountsHint": "Kapag naka-off, hindi makikita ang halaga sa lock screen.",
+    "permissionOff": "Naka-off ang notifications para sa Kalma, kaya hindi aabot sa iyo ang mga paalala.",
+    "openSettings": "Buksan ang notification settings",
+    "testReminder": "Magpadala ng test na paalala sa loob ng 10 segundo",
+    "testScheduled": "Naka-set na ang test na paalala. I-lock ang phone o umalis sa app para makita ito.",
+    "scheduledReminders": "Mga naka-schedule na paalala ({{count}})",
+    "noScheduled": "Walang naka-schedule."
   },
   "ad": {
     "label": "Ad"
@@ -77,7 +87,9 @@
     "save": "I-save",
     "back": "Bumalik",
     "errorTitle": "May nagkaproblema",
-    "saveFailed": "Hindi na-save ang tracker mo. Pakisubukan ulit."
+    "saveFailed": "Hindi na-save ang tracker mo. Pakisubukan ulit.",
+    "notNow": "Mamaya na",
+    "continue": "Ituloy"
   },
   "limits": {
     "trackers": {
@@ -147,12 +159,12 @@
     "repeatSummary": {
       "twice": "Dalawang beses kada buwan · ika-{{first}} at ika-{{second}}",
       "monthly": "Buwanan · tuwing ika-{{day}}",
-      "day_one": "Araw-araw",
-      "day_other": "Kada {{count}} araw",
-      "week_one": "Linggo-linggo",
-      "week_other": "Kada {{count}} linggo",
-      "month_one": "Buwan-buwan",
-      "month_other": "Kada {{count}} buwan"
+      "everyDay": "Araw-araw",
+      "day": "Kada {{count}} araw",
+      "everyWeek": "Linggo-linggo",
+      "week": "Kada {{count}} linggo",
+      "everyMonth": "Buwan-buwan",
+      "month": "Kada {{count}} buwan"
     },
     "interestValue": {
       "monthly": "{{rate}}% kada buwan",
@@ -239,5 +251,30 @@
     },
     "deleteAdjustmentTitle": "I-delete ang balance update na ito?",
     "deleteAdjustmentMessage": "Kukuwentahin ulit ang natitirang balance."
+  },
+  "reminders": {
+    "channelName": "Mga paalala sa due",
+    "debt": {
+      "dueIn": "Due sa loob ng {{count}} araw",
+      "dueTomorrow": "Due bukas",
+      "dueToday": "Due ngayon",
+      "wasDueYesterday": "Na-due kahapon",
+      "wasDue": "Na-due {{count}} araw na ang nakalipas",
+      "expectedIn": "Inaasahan sa loob ng {{count}} araw",
+      "expectedTomorrow": "Inaasahan bukas",
+      "expectedToday": "Inaasahan ngayon",
+      "wasExpectedYesterday": "Inaasahan kahapon",
+      "wasExpected": "Inaasahan {{count}} araw na ang nakalipas"
+    },
+    "permissionTitle": "I-on ang mga paalala?",
+    "permissionMessage": "Magpapadala ang Kalma ng tahimik na paalala bago ang bawat due date. Mababago mo ito anumang oras sa Settings.",
+    "off": "Naka-off ang notifications",
+    "testTitle": "Test na paalala ng Kalma",
+    "testBody": "Gumagana ang mga paalala.",
+    "kind": {
+      "before_due": "Bago ang due",
+      "due_day": "Araw ng due",
+      "overdue": "Paalala pagkalampas"
+    }
   }
 }

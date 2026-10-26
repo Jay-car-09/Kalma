@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 
 import { prepareDatabase } from '@/data/db';
 import { useSyncLanguage } from '@/i18n/useSyncLanguage';
+import { useReminderSync } from '@/reminders/useReminderSync';
 import { SettingsProvider, useSettings } from '@/settings/SettingsProvider';
 import { useSyncNativeAppearance, useTheme } from '@/theme/useTheme';
 
@@ -49,6 +50,7 @@ function RootNavigator() {
   // Keep the splash screen up until fonts, saved settings, language and database are ready,
   // so the app never flashes the wrong theme, font or language.
   const ready = (fontsLoaded || fontError != null) && settingsLoaded && languageReady && dbReady;
+  useReminderSync(ready);
 
   useEffect(() => {
     if (ready) SplashScreen.hideAsync();

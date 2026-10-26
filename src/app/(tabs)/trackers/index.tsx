@@ -11,6 +11,7 @@ import { Chips } from '@/components/Chips';
 import { showLimitPrompt } from '@/components/limitPrompt';
 import { EmptyState, Screen } from '@/components/Screen';
 import { getLimits } from '@/data/limits';
+import { useNotificationPermission } from '@/reminders/permission';
 import {
   getUsage,
   listTrackers,
@@ -35,6 +36,7 @@ export default function TrackersScreen() {
   const { t } = useTranslation();
   const router = useRouter();
   const isPaid = useIsPaid();
+  const notificationsDenied = useNotificationPermission() === 'denied';
   const { colors } = useTheme();
   // Filters live in the URL (e.g. /trackers?status=overdue) so the dashboard can open them.
   const params = useLocalSearchParams<{ direction?: string; status?: string }>();
@@ -117,6 +119,7 @@ export default function TrackersScreen() {
                   tracker={tracker}
                   onPress={() => router.push(`/trackers/${tracker.id}`)}
                   onMarkPaid={() => router.push({ pathname: '/payment-sheet', params: { trackerId: tracker.id } })}
+                  notificationsDenied={notificationsDenied}
                 />
               ))}
             </View>
@@ -127,9 +130,14 @@ export default function TrackersScreen() {
   );
 }
 
-type RowProps = { tracker: Tracker; onPress: () => void; onMarkPaid: () => void };
+type RowProps = {
+  tracker: Tracker;
+  onPress: () => void;
+  onMarkPaid: () => void;
+  notificationsDenied: boolean;
+};
 
-function TrackerRow({ tracker, onPress, onMarkPaid }: RowProps) {
+function TrackerRow({ tracker, onPress, onMarkPaid, notificationsDenied }: RowProps) {
   const { t, i18n } = useTranslation();
   const { colors } = useTheme();
   const due = t('tracker.dueOn', { date: formatDate(tracker.dueDate, i18n.language) });
@@ -165,6 +173,11 @@ function TrackerRow({ tracker, onPress, onMarkPaid }: RowProps) {
           )}
         </View>
       </View>
+      {tracker.notify && notificationsDenied && (
+        <AppText variant="caption" tone="tertiary">
+          {t('reminders.off')}
+        </AppText>
+      )}
       {tracker.status === 'active' && (
         <View style={styles.rowAction}>
           <Button

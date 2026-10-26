@@ -29,6 +29,7 @@ import {
 import { addDays, today } from '@/lib/dates';
 import { centavosToInput, parsePeso } from '@/lib/money';
 import type { Recurrence } from '@/lib/recurrence';
+import { askReminderPermission } from '@/reminders/permission';
 import { useIsPaid } from '@/settings/tier';
 import { radius, spacing } from '@/theme/tokens';
 import { useTheme } from '@/theme/useTheme';
@@ -221,6 +222,8 @@ export default function TrackerSheet() {
       if (id) await updateTracker(id, input, isPaid);
       else await createTracker(input, isPaid);
       router.back();
+      // First tracker saved with Notify on → explain, then ask the phone for permission.
+      if (input.notify) askReminderPermission(t);
     } catch (err) {
       if (err instanceof LimitError) {
         if (err.kind === 'notified') {

@@ -63,7 +63,7 @@ export function NextDueCard({ data }: Props) {
   if (!tracker) return null;
 
   const days = daysBetween(data.today, tracker.dueDate);
-  const when = days === 0 ? t('home.today') : t('home.inDays', { count: days });
+  const when = days === 0 ? t('home.today') : days === 1 ? t('home.tomorrow') : t('home.inDays', { count: days });
   return (
     <Card title={t('home.nextDue')} onPress={() => router.navigate(`/trackers/${tracker.id}`)}>
       <TrackerLine tracker={tracker} />
