@@ -1,0 +1,77 @@
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+
+import { readSetting, writeSetting } from '@/lib/storage';
+
+export type ThemePreference = 'light' | 'dark' | 'system';
+export type LanguagePreference = 'en' | 'tl' | 'system';
+
+type Settings = {
+  theme: ThemePreference;
+  language: LanguagePreference;
+  // Dev-only "Pretend Paid" switch. Read the tier through useIsPaid(), not this.
+  pretendPaid: boolean;
+};
+
+type SettingsContextValue = Settings & {
+  loaded: boolean;
+  setTheme: (value: ThemePreference) => void;
+  setLanguage: (value: LanguagePreference) => void;
+  setPretendPaid: (value: boolean) => void;
+};
+
+const DEFAULTS: Settings = { theme: 'system', language: 'system', pretendPaid: false };
+
+const THEMES: readonly ThemePreference[] = ['light', 'dark', 'system'];
+const LANGUAGES: readonly LanguagePreference[] = ['en', 'tl', 'system'];
+
+const SettingsContext = createContext<SettingsContextValue | null>(null);
+
+function pick<T extends string>(value: string | null, allowed: readonly T[], fallback: T): T {
+  return allowed.includes(value as T) ? (value as T) : fallback;
+}
+
+export function SettingsProvider({ children }: { children: ReactNode }) {
+  const [settings, setSettings] = useState<Settings>(DEFAULTS);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    Promise.all([readSetting('theme'), readSetting('language'), readSetting('pretendPaid')]).then(
+      ([theme, language, pretendPaid]) => {
+        setSettings({
+          theme: pick(theme, THEMES, DEFAULTS.theme),
+          language: pick(language, LANGUAGES, DEFAULTS.language),
+          pretendPaid: pretendPaid === 'true',
+        });
+        setLoaded(true);
+      },
+    );
+  }, []);
+
+  const setTheme = useCallback((theme: ThemePreference) => {
+    setSettings((s) => ({ ...s, theme }));
+    writeSetting('theme', theme);
+  }, []);
+
+  const setLanguage = useCallback((language: LanguagePreference) => {
+    setSettings((s) => ({ ...s, language }));
+    writeSetting('language', language);
+  }, []);
+
+  const setPretendPaid = useCallback((pretendPaid: boolean) => {
+    setSettings((s) => ({ ...s, pretendPaid }));
+    writeSetting('pretendPaid', String(pretendPaid));
+  }, []);
+
+  const value = useMemo(
+    () => ({ ...settings, loaded, setTheme, setLanguage, setPretendPaid }),
+    [settings, loaded, setTheme, setLanguage, setPretendPaid],
+  );
+
+  return <SettingsContext.Provider value={value}>{children}</SettingsContext.Provider>;
+}
+
+export function useSettings() {
+  const ctx = useContext(SettingsContext);
+  if (!ctx) throw new Error('useSettings must be used inside <SettingsProvider>');
+  return ctx;
+}

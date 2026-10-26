@@ -1,0 +1,42 @@
+{
+  "tabs": {
+    "home": "Home",
+    "trackers": "Trackers",
+    "settings": "Settings",
+    "account": "Account"
+  },
+  "home": {
+    "title": "Home",
+    "empty": "Wala ka pang tina-track. Lalabas dito ang mga utang mo at ang mga due date nila."
+  },
+  "trackers": {
+    "title": "Trackers",
+    "empty": "Wala ka pang tracker. Lalabas dito ang bawat idaragdag mo."
+  },
+  "account": {
+    "title": "Account",
+    "empty": "Naka-guest mode ka. Sa phone na ito lang naka-save ang lahat. Darating ang sign-in at backup sa susunod na update."
+  },
+  "settings": {
+    "title": "Settings",
+    "appearance": "Itsura",
+    "theme": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "Sundin ang setting ng phone"
+    },
+    "language": "Wika",
+    "languageOption": {
+      "system": "Sundin ang setting ng phone",
+      "en": "English",
+      "tl": "Tagalog"
+    },
+    "developer": "Developer",
+    "pretendPaid": "Pretend Paid (dev only)",
+    "pretendPaidHint": "Itinatago ang ads para makita ang Paid tier. Makikita lang ito habang dine-develop.",
+    "amountPreview": "Halimbawa ng halaga"
+  },
+  "ad": {
+    "label": "Ad"
+  }
+}

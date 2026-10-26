@@ -1,0 +1,42 @@
+{
+  "tabs": {
+    "home": "Home",
+    "trackers": "Trackers",
+    "settings": "Settings",
+    "account": "Account"
+  },
+  "home": {
+    "title": "Home",
+    "empty": "Nothing to track yet. Your debts and due dates will show up here."
+  },
+  "trackers": {
+    "title": "Trackers",
+    "empty": "No trackers yet. Each one you add will appear here."
+  },
+  "account": {
+    "title": "Account",
+    "empty": "You're using guest mode. Everything stays on this phone. Sign-in and backup will come in a later update."
+  },
+  "settings": {
+    "title": "Settings",
+    "appearance": "Appearance",
+    "theme": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "Follow phone setting"
+    },
+    "language": "Language",
+    "languageOption": {
+      "system": "Follow phone setting",
+      "en": "English",
+      "tl": "Tagalog"
+    },
+    "developer": "Developer",
+    "pretendPaid": "Pretend Paid (dev only)",
+    "pretendPaidHint": "Hides ads to preview the Paid tier. Only visible while developing.",
+    "amountPreview": "Amount preview"
+  },
+  "ad": {
+    "label": "Ad"
+  }
+}
