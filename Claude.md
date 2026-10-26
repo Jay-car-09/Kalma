@@ -18,6 +18,7 @@ The owner is a non-developer building with AI help. So:
 - Never add a library that isn't listed in section 9 without asking first.
 - Never put passwords, API keys or secrets in the code.
 - If an error happens, explain the cause simply before fixing it.
+- **Commit rule:** at the end of every phase or fix, after `npm test` passes, commit and push with a clear message. Before starting any new phase, check for uncommitted changes and commit them first.
 
 ---
 
