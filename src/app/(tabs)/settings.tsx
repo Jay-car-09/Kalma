@@ -10,7 +10,7 @@ import { Screen } from '@/components/Screen';
 import { OptionRow, SettingsSection, SwitchRow } from '@/components/SettingsList';
 import { formatTime } from '@/lib/dates';
 import { ScheduledRemindersSection, TestReminderRow } from '@/reminders/DevReminders';
-import { useNotificationPermission } from '@/reminders/permission';
+import { useNotificationPermission, useRemindersHealthy } from '@/reminders/permission';
 import {
   useSettings,
   type LanguagePreference,
@@ -31,12 +31,18 @@ export default function SettingsScreen() {
   const { theme, setTheme, language, setLanguage, pretendPaid, setPretendPaid } = settings;
   const { reminderTime, setReminderTime, showAmounts, setShowAmounts } = settings;
   const permission = useNotificationPermission();
+  const remindersHealthy = useRemindersHealthy();
   const [timePickerOpen, setTimePickerOpen] = useState(false);
   const [hour, minute] = reminderTime.split(':').map(Number);
 
   return (
     <Screen title={t('settings.title')}>
       <SettingsSection title={t('settings.reminders')}>
+        {!remindersHealthy && (
+          <View style={styles.notice}>
+            <AppText tone="secondary">{t('settings.remindersUnavailable')}</AppText>
+          </View>
+        )}
         {permission === 'denied' && (
           <View style={styles.notice}>
             <AppText tone="secondary">{t('settings.permissionOff')}</AppText>

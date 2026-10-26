@@ -76,7 +76,8 @@
     "testReminder": "Magpadala ng test na paalala sa loob ng 10 segundo",
     "testScheduled": "Naka-set na ang test na paalala. I-lock ang phone o umalis sa app para makita ito.",
     "scheduledReminders": "Mga naka-schedule na paalala ({{count}})",
-    "noScheduled": "Walang naka-schedule."
+    "noScheduled": "Walang naka-schedule.",
+    "remindersUnavailable": "Hindi gumagana ang mga paalala sa phone na ito ngayon. Ligtas ang mga tracker mo, at susubukan ulit ng Kalma sa susunod na buksan mo ito."
   },
   "ad": {
     "label": "Ad"

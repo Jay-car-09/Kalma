@@ -76,7 +76,8 @@
     "testReminder": "Send a test reminder in 10 seconds",
     "testScheduled": "Test reminder set. Lock your phone or leave the app to see it.",
     "scheduledReminders": "Scheduled reminders ({{count}})",
-    "noScheduled": "Nothing scheduled."
+    "noScheduled": "Nothing scheduled.",
+    "remindersUnavailable": "Reminders aren't working on this phone right now. Your trackers are safe, and Kalma will try again the next time you open it."
   },
   "ad": {
     "label": "Ad"

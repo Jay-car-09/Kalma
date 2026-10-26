@@ -1,4 +1,3 @@
-import * as Notifications from 'expo-notifications';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, StyleSheet, View } from 'react-native';
@@ -9,6 +8,7 @@ import { listScheduledReminders } from '@/data/reminders';
 import { formatDate, formatTime, fromLocalDate } from '@/lib/dates';
 import { spacing } from '@/theme/tokens';
 
+import { notifications } from './notifications';
 import { askReminderPermission } from './permission';
 import { onRemindersSynced, sendTestReminder } from './sync';
 
@@ -17,13 +17,18 @@ import { onRemindersSynced, sendTestReminder } from './sync';
 export function TestReminderRow() {
   const { t } = useTranslation();
   async function onPress() {
-    await askReminderPermission(t);
-    if (!(await Notifications.getPermissionsAsync()).granted) {
-      Alert.alert(t('settings.permissionOff'));
-      return;
+    try {
+      await askReminderPermission(t);
+      if (!(await notifications()?.getPermissionsAsync())?.granted) {
+        Alert.alert(t('settings.permissionOff'));
+        return;
+      }
+      await sendTestReminder();
+      Alert.alert(t('settings.testScheduled'));
+    } catch (error) {
+      console.warn('[reminders] test reminder failed', error);
+      Alert.alert(t('settings.remindersUnavailable'));
     }
-    await sendTestReminder();
-    Alert.alert(t('settings.testScheduled'));
   }
   return (
     <Pressable onPress={onPress} accessibilityRole="button" style={({ pressed }) => [styles.row, pressed && styles.pressed]}>
