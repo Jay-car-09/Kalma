@@ -1,5 +1,7 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
 import type { ReactNode } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { screenPadding, spacing } from '@/theme/tokens';
@@ -9,19 +11,37 @@ import { AppText } from './AppText';
 
 type ScreenProps = {
   title: string;
+  /** Shown to the right of the title, e.g. the + button. */
+  action?: ReactNode;
+  /** Shows a back button above the title. */
+  onBack?: () => void;
   children?: ReactNode;
 };
 
 // Standard tab screen: title at the top, generous padding, scrolls when content is long.
 // The tab bar handles the bottom edge, so only the top safe area is applied here.
-export function Screen({ title, children }: ScreenProps) {
+export function Screen({ title, action, onBack, children }: ScreenProps) {
   const { colors } = useTheme();
+  const { t } = useTranslation();
   return (
     <SafeAreaView edges={['top']} style={[styles.safe, { backgroundColor: colors.background }]}>
       <ScrollView contentContainerStyle={styles.content}>
-        <AppText variant="title" accessibilityRole="header">
-          {title}
-        </AppText>
+        {onBack && (
+          <Pressable
+            onPress={() => onBack()}
+            hitSlop={spacing.md}
+            accessibilityRole="button"
+            accessibilityLabel={t('common.back')}
+            style={styles.back}>
+            <Ionicons name="chevron-back" size={24} color={colors.textPrimary} />
+          </Pressable>
+        )}
+        <View style={styles.header}>
+          <AppText variant="title" accessibilityRole="header" style={styles.title}>
+            {title}
+          </AppText>
+          {action}
+        </View>
         {children}
       </ScrollView>
     </SafeAreaView>
@@ -46,6 +66,9 @@ const styles = StyleSheet.create({
     padding: screenPadding,
     gap: spacing.xxl,
   },
+  back: { alignSelf: 'flex-start', marginBottom: -spacing.lg },
+  header: { flexDirection: 'row', alignItems: 'center', gap: spacing.lg },
+  title: { flex: 1 },
   empty: {
     flex: 1,
     justifyContent: 'center',

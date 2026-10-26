@@ -73,7 +73,7 @@ The owner is a non-developer building with AI help. So:
 - Urgency is shown in **greyscale only** (High = solid black chip, Normal = outlined, Low = light grey). Never red/green.
 
 ### Data model
-**Pending — Section 2 of the spec.** Do not build tracker storage until it is added here.
+See [docs/data-model.md](docs/data-model.md) (source of truth).
 
 ---
 
@@ -150,7 +150,11 @@ The owner is a non-developer building with AI help. So:
 - **@expo-google-fonts/inter** — font
 - **@react-native-async-storage/async-storage** — small settings only (theme, language, flags)
 - **@expo/vector-icons** — monochrome icons
-- Later phases (do not add yet): local database, expo-notifications, cloud backend (likely Supabase), AdMob, RevenueCat, expo-local-authentication.
+- **expo-sqlite** — on-device database (see docs/data-model.md)
+- **expo-crypto** — UUIDs for database IDs
+- **@react-native-community/datetimepicker** — due date picker
+- **jest-expo** — unit tests (`npm test`)
+- Later phases (do not add yet): expo-notifications, cloud backend (likely Supabase), AdMob, RevenueCat, expo-local-authentication.
 
 ## 10. Build phases
 1. **Phase 1 (Expo Go, free):** guest mode — foundation, trackers, dashboard, reminders, EN/TL, themes, app lock, tier limits on the `isPaid` flag.

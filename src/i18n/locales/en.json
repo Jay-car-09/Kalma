@@ -6,12 +6,44 @@
     "account": "Account"
   },
   "home": {
-    "title": "Home",
-    "empty": "Nothing to track yet. Your debts and due dates will show up here."
+    "welcome": "Welcome to Kalma. Add a debt, or money someone owes you, and this page will show what's due.",
+    "addFirst": "Add your first tracker",
+    "dueThisMonth": "Due this month",
+    "paidOf": "paid of",
+    "nothingDue": "Nothing due this month.",
+    "nextDue": "Next due",
+    "today": "Due today",
+    "inDays_one": "Tomorrow",
+    "inDays_other": "In {{count}} days",
+    "needsAttention": "Needs attention",
+    "wasDue": "Was due {{date}}",
+    "moreOverdue": "+{{count}} more",
+    "seeAll": "See all",
+    "totalDebt": "Total debt",
+    "totalDebtHint": "Add a remaining balance to a tracker to see your total debt.",
+    "owedToYou": "Owed to you",
+    "dueThisMonthShort": "due this month",
+    "remainingTotal": "remaining in total",
+    "insights": "Insights",
+    "paymentsByMonth": "Payments made, last 6 months",
+    "sixMonthTotal": "in total",
+    "byType": "Due this month by type",
+    "onTime": "On-time record",
+    "onTimeCount": "{{onTime}} of {{total}} payments on time",
+    "byUrgency": "Active trackers by urgency"
   },
   "trackers": {
     "title": "Trackers",
-    "empty": "No trackers yet. Each one you add will appear here."
+    "empty": "No trackers yet. Tap + to add your first one.",
+    "emptyFilter": "Nothing here for this filter.",
+    "add": "Add tracker",
+    "notifiedUsage": "Notified {{count}} of {{limit}}",
+    "trackerUsage": "Trackers {{count}} of {{limit}}",
+    "filter": {
+      "all": "All",
+      "owe": "I owe",
+      "owed_to_me": "Owed to me"
+    }
   },
   "account": {
     "title": "Account",
@@ -38,5 +70,174 @@
   },
   "ad": {
     "label": "Ad"
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "save": "Save",
+    "back": "Back",
+    "errorTitle": "Something went wrong",
+    "saveFailed": "Your tracker wasn't saved. Please try again."
+  },
+  "limits": {
+    "trackers": {
+      "title": "You've reached {{limit}} trackers",
+      "message": "Free keeps up to {{limit}} trackers, including done and archived ones. To add another, delete one you no longer need, or upgrade to Paid for unlimited trackers."
+    },
+    "notified": {
+      "title": "Reminders are on for {{limit}} trackers",
+      "message": "Free sends reminders for up to {{limit}} trackers. Turn reminders off on another tracker, or upgrade to Paid for unlimited reminders."
+    }
+  },
+  "tracker": {
+    "status": {
+      "active": "Active",
+      "done": "Done",
+      "archived": "Archived"
+    },
+    "urgency": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High"
+    },
+    "overdue": "Overdue",
+    "dueSoon": "Due soon",
+    "dueOn": "Due {{date}}",
+    "direction": {
+      "owe": "I owe",
+      "owed_to_me": "Owed to me"
+    },
+    "notifyOn": "Reminders on",
+    "notifyOff": "Off",
+    "notFound": "This tracker is no longer here.",
+    "deleteTitle": "Delete this tracker?",
+    "deleteMessage": "This also deletes its payment history.",
+    "delete": "Delete",
+    "edit": "Edit",
+    "archive": "Archive",
+    "unarchive": "Unarchive",
+    "remainingBalance": "Remaining balance",
+    "field": {
+      "dueDate": "Due date",
+      "repeat": "Repeats",
+      "type": "Type",
+      "urgency": "Urgency",
+      "notify": "Remind me",
+      "interestRate": "Interest rate (%)",
+      "cutoff": "Statement cutoff day",
+      "notes": "Notes"
+    },
+    "type": {
+      "credit_card": "Credit card",
+      "personal_loan": "Personal/bank loan",
+      "bnpl": "BNPL",
+      "online_lending": "Online lending app",
+      "sss_loan": "SSS salary loan",
+      "pagibig_loan": "Pag-IBIG salary loan",
+      "informal": "Informal utang",
+      "other": "Other"
+    },
+    "repeat": {
+      "none": "One-time",
+      "weekly": "Weekly",
+      "twice_monthly": "Twice a month",
+      "monthly": "Monthly",
+      "custom": "Custom"
+    },
+    "repeatSummary": {
+      "twice": "Twice a month · {{first}} and {{second}}",
+      "monthly": "Monthly · day {{day}}",
+      "day_one": "Every day",
+      "day_other": "Every {{count}} days",
+      "week_one": "Every week",
+      "week_other": "Every {{count}} weeks",
+      "month_one": "Every month",
+      "month_other": "Every {{count}} months"
+    },
+    "interestValue": {
+      "monthly": "{{rate}}% a month",
+      "annual": "{{rate}}% a year"
+    },
+    "cutoffValue": "Day {{day}}"
+  },
+  "form": {
+    "addTitle": "New tracker",
+    "editTitle": "Edit tracker",
+    "name": "Name",
+    "namePlaceholder": {
+      "owe": "Who you owe, e.g. BPI Card",
+      "owed_to_me": "Who owes you, e.g. Ate Joy"
+    },
+    "amountFull": "Full amount (₱)",
+    "amountEach": "Amount each time (₱)",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "nextWeek": "Next week",
+    "pickDate": "Pick a date",
+    "monthlyHint": "Repeats on day {{day}} of each month. Shorter months use their last day.",
+    "firstDay": "First day",
+    "secondDay": "Second day",
+    "every": "Every",
+    "unit": {
+      "day": "Days",
+      "week": "Weeks",
+      "month": "Months"
+    },
+    "notifyFull": "Free includes reminders for {{limit}} trackers. Turn one off to use it here.",
+    "moreDetails": "More details",
+    "period": {
+      "monthly": "Per month",
+      "annual": "Per year"
+    },
+    "error": {
+      "name": "Add a name.",
+      "amount": "Enter an amount, like 2,450.00.",
+      "day": "Use a day from 1 to 31.",
+      "daysSame": "Pick two different days.",
+      "every": "Use a whole number, 1 or more.",
+      "rate": "Enter a rate, like 3.5."
+    }
+  },
+  "payment": {
+    "paid": "Paid",
+    "received": "Received",
+    "markPaid": "Mark as paid",
+    "markReceived": "Mark as received",
+    "editTitle": "Edit payment",
+    "settles": "Settles the {{date}} due date",
+    "forDue": "For the {{date}} due date",
+    "moreOverdue": "{{count}} more overdue after this",
+    "amount": "Amount (₱)",
+    "datePaid": "Date paid",
+    "dateReceived": "Date received",
+    "yesterday": "Yesterday",
+    "note": "Note (optional)",
+    "delete": "Delete payment",
+    "deleteTitle": "Delete this payment?",
+    "deleteMessage": "If it's the latest one, the due date moves back to the date it settled.",
+    "toastPaid": "Marked as paid",
+    "toastReceived": "Marked as received",
+    "undo": "Undo",
+    "undoFailed": "Couldn't undo. You can delete the payment from the history instead.",
+    "saveFailed": "The payment wasn't saved. Please try again."
+  },
+  "balance": {
+    "title": "Update remaining balance",
+    "current": "Now:",
+    "newBalance": "New remaining balance (₱)",
+    "hint": "Kalma saves the difference as a balance update in the history. Your starting balance stays as you entered it.",
+    "saveFailed": "The balance wasn't updated. Please try again."
+  },
+  "history": {
+    "title": "History",
+    "empty": "No payments yet.",
+    "kind": {
+      "payment": "Payment",
+      "received": "Received",
+      "balanceUp": "Balance went up",
+      "balanceDown": "Balance went down"
+    },
+    "deleteAdjustmentTitle": "Delete this balance update?",
+    "deleteAdjustmentMessage": "The remaining balance will be recalculated."
   }
 }

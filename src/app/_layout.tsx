@@ -9,8 +9,9 @@ import { useFonts } from '@expo-google-fonts/inter/useFonts';
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider, type Theme } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
+import { prepareDatabase } from '@/data/db';
 import { useSyncLanguage } from '@/i18n/useSyncLanguage';
 import { SettingsProvider, useSettings } from '@/settings/SettingsProvider';
 import { useSyncNativeAppearance, useTheme } from '@/theme/useTheme';
@@ -36,10 +37,18 @@ function RootNavigator() {
   const languageReady = useSyncLanguage();
   const { scheme, colors } = useTheme();
   useSyncNativeAppearance();
+  const [dbReady, setDbReady] = useState(false);
+  const [dbError, setDbError] = useState<Error | null>(null);
 
-  // Keep the splash screen up until fonts, saved settings and language are ready,
+  useEffect(() => {
+    prepareDatabase().then(() => setDbReady(true), setDbError);
+  }, []);
+  // Show the router's error screen rather than run on a half-migrated database.
+  if (dbError) throw dbError;
+
+  // Keep the splash screen up until fonts, saved settings, language and database are ready,
   // so the app never flashes the wrong theme, font or language.
-  const ready = (fontsLoaded || fontError != null) && settingsLoaded && languageReady;
+  const ready = (fontsLoaded || fontError != null) && settingsLoaded && languageReady && dbReady;
 
   useEffect(() => {
     if (ready) SplashScreen.hideAsync();
@@ -65,6 +74,9 @@ function RootNavigator() {
       <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
         <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="tracker-sheet" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="payment-sheet" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="balance-sheet" options={{ presentation: 'modal' }} />
       </Stack>
     </ThemeProvider>
   );

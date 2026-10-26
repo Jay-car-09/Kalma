@@ -6,12 +6,44 @@
     "account": "Account"
   },
   "home": {
-    "title": "Home",
-    "empty": "Wala ka pang tina-track. Lalabas dito ang mga utang mo at ang mga due date nila."
+    "welcome": "Maligayang pagdating sa Kalma. Magdagdag ng utang mo, o utang sa iyo, at dito mo makikita kung ano ang due.",
+    "addFirst": "Idagdag ang unang tracker mo",
+    "dueThisMonth": "Due ngayong buwan",
+    "paidOf": "ang nabayaran sa",
+    "nothingDue": "Walang due ngayong buwan.",
+    "nextDue": "Susunod na due",
+    "today": "Due ngayon",
+    "inDays_one": "Bukas",
+    "inDays_other": "Sa loob ng {{count}} araw",
+    "needsAttention": "Kailangang asikasuhin",
+    "wasDue": "Na-due noong {{date}}",
+    "moreOverdue": "+{{count}} pa",
+    "seeAll": "Tingnan lahat",
+    "totalDebt": "Kabuuang utang",
+    "totalDebtHint": "Lagyan ng natitirang balance ang isang tracker para makita ang kabuuang utang mo.",
+    "owedToYou": "Utang sa iyo",
+    "dueThisMonthShort": "due ngayong buwan",
+    "remainingTotal": "natitira sa kabuuan",
+    "insights": "Insights",
+    "paymentsByMonth": "Mga nabayaran, nakaraang 6 na buwan",
+    "sixMonthTotal": "sa kabuuan",
+    "byType": "Due ngayong buwan ayon sa uri",
+    "onTime": "Record ng bayad sa oras",
+    "onTimeCount": "{{onTime}} sa {{total}} na bayad ang nasa oras",
+    "byUrgency": "Mga aktibong tracker ayon sa pagka-urgent"
   },
   "trackers": {
     "title": "Trackers",
-    "empty": "Wala ka pang tracker. Lalabas dito ang bawat idaragdag mo."
+    "empty": "Wala ka pang tracker. Pindutin ang + para magdagdag.",
+    "emptyFilter": "Walang laman dito sa filter na ito.",
+    "add": "Magdagdag ng tracker",
+    "notifiedUsage": "May paalala: {{count}} sa {{limit}}",
+    "trackerUsage": "Trackers: {{count}} sa {{limit}}",
+    "filter": {
+      "all": "Lahat",
+      "owe": "Utang ko",
+      "owed_to_me": "Utang sa akin"
+    }
   },
   "account": {
     "title": "Account",
@@ -38,5 +70,174 @@
   },
   "ad": {
     "label": "Ad"
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "Kanselahin",
+    "save": "I-save",
+    "back": "Bumalik",
+    "errorTitle": "May nagkaproblema",
+    "saveFailed": "Hindi na-save ang tracker mo. Pakisubukan ulit."
+  },
+  "limits": {
+    "trackers": {
+      "title": "Naabot mo na ang {{limit}} trackers",
+      "message": "Hanggang {{limit}} trackers ang kasya sa Free, kasama ang mga tapos na at naka-archive. Para magdagdag, mag-delete ng hindi mo na kailangan, o mag-upgrade sa Paid para walang limit."
+    },
+    "notified": {
+      "title": "Naka-on ang paalala sa {{limit}} trackers",
+      "message": "Hanggang {{limit}} trackers lang ang may paalala sa Free. I-off ang paalala sa ibang tracker, o mag-upgrade sa Paid para walang limit."
+    }
+  },
+  "tracker": {
+    "status": {
+      "active": "Aktibo",
+      "done": "Tapos na",
+      "archived": "Naka-archive"
+    },
+    "urgency": {
+      "low": "Mababa",
+      "normal": "Normal",
+      "high": "Mataas"
+    },
+    "overdue": "Lampas na sa due",
+    "dueSoon": "Malapit na ang due",
+    "dueOn": "Due sa {{date}}",
+    "direction": {
+      "owe": "Utang ko",
+      "owed_to_me": "Utang sa akin"
+    },
+    "notifyOn": "May paalala",
+    "notifyOff": "Walang paalala",
+    "notFound": "Wala na ang tracker na ito.",
+    "deleteTitle": "I-delete ang tracker na ito?",
+    "deleteMessage": "Mabubura rin ang history ng mga bayad nito.",
+    "delete": "I-delete",
+    "edit": "I-edit",
+    "archive": "I-archive",
+    "unarchive": "Ibalik mula sa archive",
+    "remainingBalance": "Natitirang balance",
+    "field": {
+      "dueDate": "Due date",
+      "repeat": "Gaano kadalas",
+      "type": "Uri",
+      "urgency": "Pagka-urgent",
+      "notify": "Paalalahanan ako",
+      "interestRate": "Interest rate (%)",
+      "cutoff": "Statement cutoff day",
+      "notes": "Notes"
+    },
+    "type": {
+      "credit_card": "Credit card",
+      "personal_loan": "Personal/bank loan",
+      "bnpl": "BNPL",
+      "online_lending": "Online lending app",
+      "sss_loan": "SSS salary loan",
+      "pagibig_loan": "Pag-IBIG salary loan",
+      "informal": "Utang sa kakilala",
+      "other": "Iba pa"
+    },
+    "repeat": {
+      "none": "Isang beses",
+      "weekly": "Lingguhan",
+      "twice_monthly": "Dalawang beses kada buwan",
+      "monthly": "Buwanan",
+      "custom": "Custom"
+    },
+    "repeatSummary": {
+      "twice": "Dalawang beses kada buwan · ika-{{first}} at ika-{{second}}",
+      "monthly": "Buwanan · tuwing ika-{{day}}",
+      "day_one": "Araw-araw",
+      "day_other": "Kada {{count}} araw",
+      "week_one": "Linggo-linggo",
+      "week_other": "Kada {{count}} linggo",
+      "month_one": "Buwan-buwan",
+      "month_other": "Kada {{count}} buwan"
+    },
+    "interestValue": {
+      "monthly": "{{rate}}% kada buwan",
+      "annual": "{{rate}}% kada taon"
+    },
+    "cutoffValue": "Ika-{{day}}"
+  },
+  "form": {
+    "addTitle": "Bagong tracker",
+    "editTitle": "I-edit ang tracker",
+    "name": "Pangalan",
+    "namePlaceholder": {
+      "owe": "Kanino ka may utang, hal. BPI Card",
+      "owed_to_me": "Sino ang may utang sa iyo, hal. Ate Joy"
+    },
+    "amountFull": "Buong halaga (₱)",
+    "amountEach": "Halaga bawat bayad (₱)",
+    "today": "Ngayon",
+    "tomorrow": "Bukas",
+    "nextWeek": "Sa isang linggo",
+    "pickDate": "Pumili ng petsa",
+    "monthlyHint": "Uulit tuwing ika-{{day}} ng bawat buwan. Sa mas maiikling buwan, sa huling araw.",
+    "firstDay": "Unang araw",
+    "secondDay": "Ikalawang araw",
+    "every": "Kada",
+    "unit": {
+      "day": "Araw",
+      "week": "Linggo",
+      "month": "Buwan"
+    },
+    "notifyFull": "Hanggang {{limit}} trackers lang ang may paalala sa Free. Mag-off ng isa para magamit dito.",
+    "moreDetails": "Iba pang detalye",
+    "period": {
+      "monthly": "Kada buwan",
+      "annual": "Kada taon"
+    },
+    "error": {
+      "name": "Lagyan ng pangalan.",
+      "amount": "Maglagay ng halaga, hal. 2,450.00.",
+      "day": "Pumili ng araw mula 1 hanggang 31.",
+      "daysSame": "Pumili ng dalawang magkaibang araw.",
+      "every": "Maglagay ng buong numero, 1 pataas.",
+      "rate": "Maglagay ng rate, hal. 3.5."
+    }
+  },
+  "payment": {
+    "paid": "Bayad na",
+    "received": "Natanggap",
+    "markPaid": "Markahang bayad na",
+    "markReceived": "Markahang natanggap",
+    "editTitle": "I-edit ang bayad",
+    "settles": "Para sa due date na {{date}}",
+    "forDue": "Para sa due na {{date}}",
+    "moreOverdue": "May {{count}} pang lampas sa due pagkatapos nito",
+    "amount": "Halaga (₱)",
+    "datePaid": "Petsa ng bayad",
+    "dateReceived": "Petsa na natanggap",
+    "yesterday": "Kahapon",
+    "note": "Note (opsyonal)",
+    "delete": "I-delete ang bayad",
+    "deleteTitle": "I-delete ang bayad na ito?",
+    "deleteMessage": "Kung ito ang pinakahuling bayad, ibabalik ang due date sa dating petsa.",
+    "toastPaid": "Namarkahang bayad na",
+    "toastReceived": "Namarkahang natanggap",
+    "undo": "I-undo",
+    "undoFailed": "Hindi na-undo. I-delete na lang ang bayad sa history.",
+    "saveFailed": "Hindi na-save ang bayad. Pakisubukan ulit."
+  },
+  "balance": {
+    "title": "I-update ang natitirang balance",
+    "current": "Ngayon:",
+    "newBalance": "Bagong natitirang balance (₱)",
+    "hint": "Ise-save ng Kalma ang diperensya bilang balance update sa history. Hindi magbabago ang starting balance na inilagay mo.",
+    "saveFailed": "Hindi na-update ang balance. Pakisubukan ulit."
+  },
+  "history": {
+    "title": "History",
+    "empty": "Wala pang bayad.",
+    "kind": {
+      "payment": "Bayad",
+      "received": "Natanggap",
+      "balanceUp": "Tumaas ang balance",
+      "balanceDown": "Bumaba ang balance"
+    },
+    "deleteAdjustmentTitle": "I-delete ang balance update na ito?",
+    "deleteAdjustmentMessage": "Kukuwentahin ulit ang natitirang balance."
   }
 }

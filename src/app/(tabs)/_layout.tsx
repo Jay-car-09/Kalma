@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { AdBanner } from '@/components/AdBanner';
+import { ToastHost } from '@/components/Toast';
 import { fontFamily } from '@/theme/tokens';
 import { useTheme } from '@/theme/useTheme';
 
@@ -26,8 +27,10 @@ export default function TabLayout() {
   return (
     <Tabs
       // The ad banner sits directly above the tab bar, so it shows on every tab.
+      // Toasts float just above both.
       tabBar={(props) => (
         <View>
+          <ToastHost />
           <AdBanner />
           <BottomTabBar {...props} />
         </View>

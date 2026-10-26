@@ -53,7 +53,7 @@ export default function SettingsScreen() {
           />
           <View style={styles.previewRow}>
             <AppText tone="secondary">{t('settings.amountPreview')}</AppText>
-            <Amount value={2450} variant="heading" />
+            <Amount centavos={245000} variant="heading" />
           </View>
         </SettingsSection>
       )}
