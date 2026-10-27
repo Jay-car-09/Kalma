@@ -95,7 +95,7 @@ export async function markPaid(trackerId: string, input: PaymentInput): Promise<
     const done = next === null || paidOff;
 
     await tx.runAsync(
-      `UPDATE trackers SET due_date = ?, status = ?, notify = ?, updated_at = ? WHERE id = ?`,
+      `UPDATE trackers SET due_date = ?, status = ?, notify = ?, updated_at = ?, needs_push = 1 WHERE id = ?`,
       [next ?? tracker.dueDate, done ? 'done' : 'active', done ? 0 : tracker.notify ? 1 : 0, now, trackerId],
     );
   });
@@ -107,7 +107,7 @@ export async function markPaid(trackerId: string, input: PaymentInput): Promise<
 export async function updatePayment(id: string, input: PaymentInput): Promise<void> {
   assertPositive(input.amountCentavos);
   await db.runAsync(
-    `UPDATE payments SET amount_centavos = ?, paid_on = ?, note = ?, updated_at = ?
+    `UPDATE payments SET amount_centavos = ?, paid_on = ?, note = ?, updated_at = ?, needs_push = 1
      WHERE id = ? AND kind = 'payment' AND deleted_at IS NULL`,
     [input.amountCentavos, input.paidOn, input.note, new Date().toISOString(), id],
   );
@@ -132,13 +132,13 @@ export async function deletePayment(id: string): Promise<void> {
       [payment.tracker_id],
     );
 
-    await tx.runAsync(`UPDATE payments SET deleted_at = ?, updated_at = ? WHERE id = ?`, [now, now, id]);
+    await tx.runAsync(`UPDATE payments SET deleted_at = ?, updated_at = ?, needs_push = 1 WHERE id = ?`, [now, now, id]);
 
     if (payment.kind === 'payment' && latest?.id === id && payment.occurrence_due_date) {
       await tx.runAsync(
         `UPDATE trackers SET due_date = ?,
            status = CASE WHEN status = 'done' THEN 'active' ELSE status END,
-           updated_at = ?
+           updated_at = ?, needs_push = 1
          WHERE id = ? AND deleted_at IS NULL`,
         [payment.occurrence_due_date, now, payment.tracker_id],
       );

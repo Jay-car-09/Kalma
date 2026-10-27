@@ -334,5 +334,17 @@
       "dueSettled": "Due date settled",
       "note": "Note"
     }
+  },
+  "cloud": {
+    "check": "Cloud connection check",
+    "connected": "Connected",
+    "connectedHint": "Kalma reached your Supabase project and found the cloud tables.",
+    "notReady": "Not ready yet",
+    "missingConfig": "The cloud settings are missing. Copy .env.example to .env, fill in the Supabase URL and key, then restart Expo.",
+    "notHttps": "The Supabase URL in .env must start with https://. Fix it, then restart Expo.",
+    "offline": "Can't reach Supabase. Check the phone's internet connection and the project URL in .env.",
+    "badKey": "Supabase didn't accept the key. Check EXPO_PUBLIC_SUPABASE_ANON_KEY in .env (use the publishable key).",
+    "noTables": "Connected, but the cloud tables aren't set up yet. Run supabase/migrations/0001_cloud_schema.sql in the Supabase SQL Editor.",
+    "unknown": "Something unexpected went wrong (code {{code}}). Try again in a minute."
   }
 }

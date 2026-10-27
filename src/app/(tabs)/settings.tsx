@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Linking, Platform, Pressable, StyleSheet, View } from 'react-native';
 
+import { CloudCheckRow } from '@/cloud/CloudCheckRow';
 import { Amount } from '@/components/Amount';
 import { AppText } from '@/components/AppText';
 import { Button } from '@/components/Button';
@@ -152,6 +153,7 @@ export default function SettingsScreen() {
             <Amount centavos={245000} variant="heading" />
           </View>
           <TestReminderRow />
+          <CloudCheckRow />
         </SettingsSection>
       )}
       {__DEV__ && <ScheduledRemindersSection />}

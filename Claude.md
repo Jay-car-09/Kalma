@@ -158,7 +158,10 @@ See [docs/data-model.md](docs/data-model.md) (source of truth).
 - **expo-notifications** — local reminders (see docs/reminders.md)
 - **expo-local-authentication** — optional app lock (Face ID / fingerprint / phone passcode)
 - **expo-file-system** + **expo-sharing** — CSV export to the phone's share sheet
-- Later phases (do not add yet): cloud backend (likely Supabase), AdMob, RevenueCat.
+- **@supabase/supabase-js** — cloud database + login (see docs/accounts-security.md)
+- **expo-secure-store** — keeps the login session's encryption key in the phone's secure keychain
+- **aes-js** (+ **@types/aes-js**, dev only) — encrypts the login session before it is stored (Supabase's Expo secure-storage pattern)
+- Later phases (do not add yet): AdMob, RevenueCat.
 
 ## 10. Build phases
 1. **Phase 1 (Expo Go, free):** guest mode — foundation, trackers, dashboard, reminders, EN/TL, themes, app lock, tier limits on the `isPaid` flag.

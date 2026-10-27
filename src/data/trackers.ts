@@ -131,7 +131,7 @@ export async function getTracker(id: string, executor: SQLiteDatabase = db): Pro
   return row ? toTracker(row) : null;
 }
 
-/** Names typed before, for autocomplete (data-model §2.5). */
+/** Names typed before, for autocomplete (data-model §2.6). */
 export async function listTrackerNames(): Promise<string[]> {
   const rows = await db.getAllAsync<{ name: string }>(
     `SELECT DISTINCT name FROM trackers WHERE deleted_at IS NULL ORDER BY name COLLATE NOCASE`,
@@ -220,7 +220,7 @@ export async function updateTracker(id: string, input: TrackerInput, isPaid: boo
 
     await tx.runAsync(
       `UPDATE trackers SET name = ?, amount_centavos = ?, due_date = ?, recurrence = ?,
-         urgency = ?, notify = ?, notes = ?, updated_at = ?
+         urgency = ?, notify = ?, notes = ?, updated_at = ?, needs_push = 1
        WHERE id = ?`,
       [
         input.name,
@@ -236,7 +236,7 @@ export async function updateTracker(id: string, input: TrackerInput, isPaid: boo
     );
     await tx.runAsync(
       `UPDATE debt_details SET direction = ?, debt_type = ?, starting_balance_centavos = ?,
-         interest_rate = ?, interest_period = ?, statement_cutoff_day = ?, updated_at = ?
+         interest_rate = ?, interest_period = ?, statement_cutoff_day = ?, updated_at = ?, needs_push = 1
        WHERE tracker_id = ?`,
       [...detailValues(input), now, id],
     );
@@ -247,7 +247,7 @@ export async function updateTracker(id: string, input: TrackerInput, isPaid: boo
 /** Archive turns reminders off; it does not free a Free slot (CLAUDE.md §5). */
 export async function setArchived(id: string, archived: boolean): Promise<void> {
   await db.runAsync(
-    `UPDATE trackers SET status = ?, notify = 0, updated_at = ? WHERE id = ? AND deleted_at IS NULL`,
+    `UPDATE trackers SET status = ?, notify = 0, updated_at = ?, needs_push = 1 WHERE id = ? AND deleted_at IS NULL`,
     [archived ? 'archived' : 'active', new Date().toISOString(), id],
   );
   notifyChange();
@@ -258,9 +258,9 @@ export async function deleteTracker(id: string): Promise<void> {
   const now = new Date().toISOString();
   await db.withExclusiveTransactionAsync(async (tx) => {
     for (const sql of [
-      `UPDATE trackers SET deleted_at = ?, updated_at = ? WHERE id = ? AND deleted_at IS NULL`,
-      `UPDATE debt_details SET deleted_at = ?, updated_at = ? WHERE tracker_id = ? AND deleted_at IS NULL`,
-      `UPDATE payments SET deleted_at = ?, updated_at = ? WHERE tracker_id = ? AND deleted_at IS NULL`,
+      `UPDATE trackers SET deleted_at = ?, updated_at = ?, needs_push = 1 WHERE id = ? AND deleted_at IS NULL`,
+      `UPDATE debt_details SET deleted_at = ?, updated_at = ?, needs_push = 1 WHERE tracker_id = ? AND deleted_at IS NULL`,
+      `UPDATE payments SET deleted_at = ?, updated_at = ?, needs_push = 1 WHERE tracker_id = ? AND deleted_at IS NULL`,
     ]) {
       await tx.runAsync(sql, [now, now, id]);
     }

@@ -63,6 +63,20 @@ const migrations: string[] = [
   CREATE INDEX idx_payments_tracker ON payments (tracker_id);
   CREATE INDEX idx_scheduled_notifications_tracker ON scheduled_notifications (tracker_id);
   `,
+  // 2 — sync bookkeeping (accounts-security §4). Device-local, never sent to the cloud.
+  // Existing rows start as needs_push = 1: nothing has been backed up yet. New rows get 1 from the
+  // default, and every UPDATE in the data layer sets it back to 1.
+  `
+  ALTER TABLE trackers ADD COLUMN needs_push INTEGER NOT NULL DEFAULT 1 CHECK (needs_push IN (0, 1));
+  ALTER TABLE debt_details ADD COLUMN needs_push INTEGER NOT NULL DEFAULT 1 CHECK (needs_push IN (0, 1));
+  ALTER TABLE payments ADD COLUMN needs_push INTEGER NOT NULL DEFAULT 1 CHECK (needs_push IN (0, 1));
+
+  CREATE TABLE sync_state (
+    id INTEGER PRIMARY KEY NOT NULL CHECK (id = 1),
+    last_pulled_at TEXT
+  );
+  INSERT INTO sync_state (id, last_pulled_at) VALUES (1, NULL);
+  `,
 ];
 
 export async function migrate(db: SQLiteDatabase): Promise<void> {

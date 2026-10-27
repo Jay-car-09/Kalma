@@ -80,7 +80,17 @@ Every trackable item in Kalma, from **any** module, is one row here. The reminde
 | `fire_at` | TEXT | ISO timestamp |
 | `kind` | TEXT | `'before_due'` · `'due_day'` · `'overdue'` |
 
-### 2.5 Not tables (deliberately)
+### 2.5 Sync bookkeeping — device-local only (migration 2)
+Never sent to the cloud. Used by sync (docs/accounts-security.md §4).
+
+| Where | Column | Notes |
+|---|---|---|
+| `trackers`, `debt_details`, `payments` | `needs_push` INTEGER 0/1, default `1` | `1` = changed on this phone since the last successful push. New rows start at `1`; every repository write sets it to `1`; only sync sets it to `0`. |
+| `sync_state` (one row, `id = 1`) | `last_pulled_at` TEXT, nullable | The server timestamp (`server_updated_at`) of the newest row received. `NULL` = never pulled. |
+
+The cloud copies of the synced tables (`supabase/migrations/`) add a required `user_id` and `server_updated_at` instead; see docs/accounts-security.md §3.
+
+### 2.6 Not tables (deliberately)
 - **Remaining balance** — never stored as a running number. Always computed (§4), so editing or deleting a payment fixes the balance automatically.
 - **People / borrower names** — autocomplete reads distinct `trackers.name`. **[HOOK]** a `people` table arrives with the ipon accountability-buddy module.
 - **Analytics** — computed from `trackers` + `payments` on the fly.

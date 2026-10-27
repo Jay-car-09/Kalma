@@ -334,5 +334,17 @@
       "dueSettled": "Due date na binayaran",
       "note": "Note"
     }
+  },
+  "cloud": {
+    "check": "Cloud connection check",
+    "connected": "Nakakonekta",
+    "connectedHint": "Naabot ng Kalma ang Supabase project mo, at nandoon na ang mga cloud table.",
+    "notReady": "Hindi pa handa",
+    "missingConfig": "Wala pa ang cloud settings. Kopyahin ang .env.example bilang .env, ilagay ang Supabase URL at key, tapos i-restart ang Expo.",
+    "notHttps": "Dapat magsimula sa https:// ang Supabase URL sa .env. Ayusin ito, tapos i-restart ang Expo.",
+    "offline": "Hindi maabot ang Supabase. I-check ang internet ng phone at ang project URL sa .env.",
+    "badKey": "Hindi tinanggap ng Supabase ang key. I-check ang EXPO_PUBLIC_SUPABASE_ANON_KEY sa .env (gamitin ang publishable key).",
+    "noTables": "Nakakonekta, pero wala pa ang mga cloud table. Patakbuhin ang supabase/migrations/0001_cloud_schema.sql sa Supabase SQL Editor.",
+    "unknown": "May hindi inaasahang problema (code {{code}}). Subukan ulit mamaya."
   }
 }

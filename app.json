@@ -42,7 +42,8 @@
         {
           "faceIDPermission": "Kalma uses Face ID to unlock the app when App lock is on."
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,
