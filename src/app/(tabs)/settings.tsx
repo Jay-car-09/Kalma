@@ -1,7 +1,7 @@
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Linking, Platform, Pressable, StyleSheet, View } from 'react-native';
+import { Alert, Linking, Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { Amount } from '@/components/Amount';
 import { AppText } from '@/components/AppText';
@@ -9,6 +9,8 @@ import { Button } from '@/components/Button';
 import { Screen } from '@/components/Screen';
 import { OptionRow, SettingsSection, SwitchRow } from '@/components/SettingsList';
 import { formatTime } from '@/lib/dates';
+import type { LockAfter } from '@/lib/lock';
+import { authenticate, hasScreenLock } from '@/lock/auth';
 import { ScheduledRemindersSection, TestReminderRow } from '@/reminders/DevReminders';
 import { useNotificationPermission, useRemindersHealthy } from '@/reminders/permission';
 import {
@@ -21,6 +23,7 @@ import { useTheme } from '@/theme/useTheme';
 
 const THEME_OPTIONS: ThemePreference[] = ['light', 'dark', 'system'];
 const LANGUAGE_OPTIONS: LanguagePreference[] = ['system', 'en', 'tl'];
+const LOCK_AFTER_OPTIONS: LockAfter[] = ['immediately', '1m', '5m'];
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
@@ -30,10 +33,24 @@ export default function SettingsScreen() {
   const settings = useSettings();
   const { theme, setTheme, language, setLanguage, pretendPaid, setPretendPaid } = settings;
   const { reminderTime, setReminderTime, showAmounts, setShowAmounts } = settings;
+  const { appLock, setAppLock, lockAfter, setLockAfter } = settings;
   const permission = useNotificationPermission();
   const remindersHealthy = useRemindersHealthy();
   const [timePickerOpen, setTimePickerOpen] = useState(false);
   const [hour, minute] = reminderTime.split(':').map(Number);
+
+  async function onAppLockChange(on: boolean) {
+    if (!on) {
+      setAppLock(false);
+      return;
+    }
+    if (!(await hasScreenLock())) {
+      Alert.alert(t('settings.appLockUnavailableTitle'), t('settings.appLockUnavailable'));
+      return;
+    }
+    // One successful unlock first, so nobody can lock themselves out.
+    if (await authenticate(t('lock.prompt'), t('common.cancel'))) setAppLock(true);
+  }
 
   return (
     <Screen title={t('settings.title')}>
@@ -77,6 +94,28 @@ export default function SettingsScreen() {
           onValueChange={setShowAmounts}
         />
       </SettingsSection>
+
+      <SettingsSection title={t('settings.security')}>
+        <SwitchRow
+          label={t('settings.appLock')}
+          hint={t('settings.appLockHint')}
+          value={appLock}
+          onValueChange={onAppLockChange}
+        />
+      </SettingsSection>
+
+      {appLock && (
+        <SettingsSection title={t('settings.lockAfter')}>
+          {LOCK_AFTER_OPTIONS.map((option) => (
+            <OptionRow
+              key={option}
+              label={t(`settings.lockAfterOption.${option}`)}
+              selected={lockAfter === option}
+              onPress={() => setLockAfter(option)}
+            />
+          ))}
+        </SettingsSection>
+      )}
 
       <SettingsSection title={t('settings.appearance')}>
         {THEME_OPTIONS.map((option) => (

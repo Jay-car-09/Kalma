@@ -1,4 +1,3 @@
-import type { TFunction } from 'i18next';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,26 +12,9 @@ import { deletePayment, listPayments, type Payment } from '@/data/payments';
 import { deleteTracker, getTracker, setArchived, type Tracker } from '@/data/trackers';
 import { useQuery } from '@/data/useQuery';
 import { formatDate } from '@/lib/dates';
-import type { Recurrence } from '@/lib/recurrence';
+import { describeRecurrence } from '@/lib/recurrenceText';
 import { radius, spacing } from '@/theme/tokens';
 import { useTheme } from '@/theme/useTheme';
-
-function describeRecurrence(r: Recurrence, t: TFunction): string {
-  switch (r.type) {
-    case 'none':
-      return t('tracker.repeat.none');
-    case 'weekly':
-      return t('tracker.repeat.weekly');
-    case 'twice_monthly':
-      return t('tracker.repeatSummary.twice', { first: r.days[0], second: r.days[1] });
-    case 'monthly':
-      return t('tracker.repeatSummary.monthly', { day: r.day });
-    case 'custom':
-      // "Every 1 day" reads as "Every day"; kept separate because Tagalog plurals lump 1–3 together.
-      if (r.every === 1) return t(`tracker.repeatSummary.every${r.unit === 'day' ? 'Day' : r.unit === 'week' ? 'Week' : 'Month'}`);
-      return t(`tracker.repeatSummary.${r.unit}`, { count: r.every });
-  }
-}
 
 export default function TrackerDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -82,7 +64,7 @@ export default function TrackerDetailScreen() {
 
   const facts: [string, ReactNode][] = [
     [t('tracker.field.dueDate'), formatDate(tracker.dueDate, i18n.language)],
-    [t('tracker.field.repeat'), describeRecurrence(tracker.recurrence, t)],
+    [t('tracker.field.repeat'), describeRecurrence(tracker.recurrence, tracker.dueDate, t, i18n.language)],
     [t('tracker.field.type'), t(`tracker.type.${tracker.debtType}`)],
     [t('tracker.field.urgency'), <UrgencyChip key="u" urgency={tracker.urgency} />],
     [t('tracker.field.notify'), tracker.notify ? t('tracker.notifyOn') : t('tracker.notifyOff')],

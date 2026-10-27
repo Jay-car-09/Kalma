@@ -156,7 +156,9 @@ See [docs/data-model.md](docs/data-model.md) (source of truth).
 - **@react-native-community/datetimepicker** — due date picker
 - **jest-expo** — unit tests (`npm test`)
 - **expo-notifications** — local reminders (see docs/reminders.md)
-- Later phases (do not add yet): cloud backend (likely Supabase), AdMob, RevenueCat, expo-local-authentication.
+- **expo-local-authentication** — optional app lock (Face ID / fingerprint / phone passcode)
+- **expo-file-system** + **expo-sharing** — CSV export to the phone's share sheet
+- Later phases (do not add yet): cloud backend (likely Supabase), AdMob, RevenueCat.
 
 ## 10. Build phases
 1. **Phase 1 (Expo Go, free):** guest mode — foundation, trackers, dashboard, reminders, EN/TL, themes, app lock, tier limits on the `isPaid` flag.

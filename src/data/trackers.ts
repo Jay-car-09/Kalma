@@ -55,6 +55,8 @@ export type Tracker = TrackerInput & {
   status: TrackerStatus;
   /** Null when the user isn't tracking a balance (data-model §4). */
   remainingCentavos: number | null;
+  /** ISO timestamp. */
+  createdAt: string;
 };
 
 type Row = {
@@ -74,12 +76,13 @@ type Row = {
   interest_period: InterestPeriod | null;
   statement_cutoff_day: number | null;
   remaining_centavos: number | null;
+  created_at: string;
 };
 
 // Remaining balance = starting − Σ payments + Σ adjustments (data-model §4).
 const SELECT_TRACKERS = `
   SELECT t.id, t.name, t.amount_centavos, t.due_date, t.recurrence, t.urgency, t.notify,
-    t.status, t.notes, d.direction, d.debt_type, d.starting_balance_centavos,
+    t.status, t.notes, t.created_at, d.direction, d.debt_type, d.starting_balance_centavos,
     d.interest_rate, d.interest_period, d.statement_cutoff_day,
     d.starting_balance_centavos - COALESCE((
       SELECT SUM(CASE WHEN p.kind = 'payment' THEN p.amount_centavos ELSE -p.amount_centavos END)
@@ -107,6 +110,7 @@ function toTracker(row: Row): Tracker {
     statementCutoffDay: row.statement_cutoff_day,
     notes: row.notes,
     remainingCentavos: row.remaining_centavos,
+    createdAt: row.created_at,
   };
 }
 

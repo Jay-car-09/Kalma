@@ -35,7 +35,14 @@
       ],
       "expo-localization",
       "expo-sqlite",
-      "@react-native-community/datetimepicker"
+      "@react-native-community/datetimepicker",
+      "expo-sharing",
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Kalma uses Face ID to unlock the app when App lock is on."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

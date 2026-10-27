@@ -77,3 +77,10 @@ export function formatTime(time: string, language: string): string {
     new Date(2000, 0, 1, h, m),
   );
 }
+
+/** Weekday name for a date, e.g. "Tuesday" / "Martes". */
+export function formatWeekday(date: string, language: string): string {
+  return new Intl.DateTimeFormat(language === 'tl' ? 'fil-PH' : 'en-PH', { weekday: 'long', timeZone: 'UTC' }).format(
+    toUTC(date),
+  );
+}

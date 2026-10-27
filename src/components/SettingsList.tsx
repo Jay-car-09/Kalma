@@ -47,6 +47,28 @@ export function OptionRow({ label, selected, onPress }: OptionRowProps) {
   );
 }
 
+type ActionRowProps = {
+  label: string;
+  icon: React.ComponentProps<typeof Ionicons>['name'];
+  onPress: () => void;
+  disabled?: boolean;
+};
+
+export function ActionRow({ label, icon, onPress, disabled }: ActionRowProps) {
+  const { colors } = useTheme();
+  return (
+    <Pressable
+      onPress={onPress}
+      disabled={disabled}
+      accessibilityRole="button"
+      accessibilityState={{ disabled }}
+      style={({ pressed }) => [styles.row, (pressed || disabled) && styles.pressed]}>
+      <AppText style={styles.label}>{label}</AppText>
+      <Ionicons name={icon} size={20} color={colors.textSecondary} />
+    </Pressable>
+  );
+}
+
 type SwitchRowProps = {
   label: string;
   hint?: string;

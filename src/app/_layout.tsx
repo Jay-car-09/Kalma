@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 
 import { prepareDatabase } from '@/data/db';
 import { useSyncLanguage } from '@/i18n/useSyncLanguage';
+import { AppLockGate } from '@/lock/AppLockGate';
 import { useReminderSync } from '@/reminders/useReminderSync';
 import { SettingsProvider, useSettings } from '@/settings/SettingsProvider';
 import { useSyncNativeAppearance, useTheme } from '@/theme/useTheme';
@@ -80,6 +81,7 @@ function RootNavigator() {
         <Stack.Screen name="payment-sheet" options={{ presentation: 'modal' }} />
         <Stack.Screen name="balance-sheet" options={{ presentation: 'modal' }} />
       </Stack>
+      <AppLockGate />
     </ThemeProvider>
   );
 }

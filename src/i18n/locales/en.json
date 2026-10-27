@@ -77,7 +77,18 @@
     "testScheduled": "Test reminder set. Lock your phone or leave the app to see it.",
     "scheduledReminders": "Scheduled reminders ({{count}})",
     "noScheduled": "Nothing scheduled.",
-    "remindersUnavailable": "Reminders aren't working on this phone right now. Your trackers are safe, and Kalma will try again the next time you open it."
+    "remindersUnavailable": "Reminders aren't working on this phone right now. Your trackers are safe, and Kalma will try again the next time you open it.",
+    "security": "Security",
+    "appLock": "App lock",
+    "appLockHint": "Use Face ID, fingerprint or your phone passcode to open Kalma.",
+    "appLockUnavailableTitle": "Set up a screen lock first",
+    "appLockUnavailable": "Your phone doesn't have Face ID, fingerprint or a passcode set up. Add one in your phone's settings, then turn on App lock.",
+    "lockAfter": "Lock after",
+    "lockAfterOption": {
+      "immediately": "Immediately",
+      "1m": "After 1 minute",
+      "5m": "After 5 minutes"
+    }
   },
   "ad": {
     "label": "Ad"
@@ -90,7 +101,9 @@
     "errorTitle": "Something went wrong",
     "saveFailed": "Your tracker wasn't saved. Please try again.",
     "notNow": "Not now",
-    "continue": "Continue"
+    "continue": "Continue",
+    "yes": "Yes",
+    "no": "No"
   },
   "limits": {
     "trackers": {
@@ -158,14 +171,15 @@
       "custom": "Custom"
     },
     "repeatSummary": {
-      "twice": "Twice a month · {{first}} and {{second}}",
-      "monthly": "Monthly · day {{day}}",
+      "twice": "Twice a month on the {{first}} and {{second}}",
+      "monthly": "Monthly on the {{day}}",
       "everyDay": "Every day",
       "day": "Every {{count}} days",
       "everyWeek": "Every week",
       "week": "Every {{count}} weeks",
       "everyMonth": "Every month",
-      "month": "Every {{count}} months"
+      "month": "Every {{count}} months",
+      "weekly": "Weekly on {{weekday}}"
     },
     "interestValue": {
       "monthly": "{{rate}}% a month",
@@ -276,6 +290,49 @@
       "before_due": "Before due",
       "due_day": "Due day",
       "overdue": "Overdue nudge"
+    }
+  },
+  "app": {
+    "name": "Kalma"
+  },
+  "lock": {
+    "locked": "Kalma is locked",
+    "unlock": "Unlock",
+    "prompt": "Unlock Kalma",
+    "noScreenLock": "Your phone no longer has a screen lock, so Kalma's app lock was turned off."
+  },
+  "export": {
+    "title": "Your data",
+    "trackers": "Export trackers",
+    "payments": "Export payment history",
+    "hint": "Creates a spreadsheet file (CSV) you can save or send.",
+    "failed": "The file couldn't be created. Please try again.",
+    "shareTitle": "Share CSV",
+    "kind": {
+      "payment": "Payment",
+      "adjustment": "Balance adjustment"
+    },
+    "col": {
+      "name": "Name",
+      "direction": "Direction",
+      "type": "Type",
+      "amount": "Amount (PHP)",
+      "dueDate": "Due date",
+      "recurrence": "Repeats",
+      "urgency": "Urgency",
+      "notify": "Reminders",
+      "status": "Status",
+      "remainingBalance": "Remaining balance (PHP)",
+      "interestRate": "Interest rate (%)",
+      "interestPeriod": "Interest period",
+      "cutoffDay": "Statement cutoff day",
+      "notes": "Notes",
+      "created": "Created",
+      "tracker": "Tracker",
+      "kind": "Kind",
+      "paidOn": "Paid on",
+      "dueSettled": "Due date settled",
+      "note": "Note"
     }
   }
 }
