@@ -6,6 +6,7 @@ import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, View
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { formatDate, fromLocalDate, toLocalDate } from '@/lib/dates';
+import { SheetLockCover } from '@/lock/AppLockGate';
 import { screenPadding, spacing } from '@/theme/tokens';
 import { useTheme } from '@/theme/useTheme';
 
@@ -28,35 +29,38 @@ export function Sheet({ title, onSave, saving = false, ready = true, children }:
   const { colors } = useTheme();
   const disabled = saving || !ready;
   return (
-    <SafeAreaView
-      // iOS modals are page sheets that already sit below the status bar.
-      edges={Platform.OS === 'ios' ? ['bottom'] : ['top', 'bottom']}
-      style={[styles.fill, { backgroundColor: colors.background }]}>
-      <View style={[styles.header, { borderBottomColor: colors.border }]}>
-        <Pressable onPress={() => router.back()} hitSlop={spacing.md} accessibilityRole="button">
-          <AppText tone="secondary">{t('common.cancel')}</AppText>
-        </Pressable>
-        <AppText variant="heading" style={styles.title} numberOfLines={1}>
-          {title}
-        </AppText>
-        <Pressable
-          onPress={onSave}
-          disabled={disabled}
-          hitSlop={spacing.md}
-          accessibilityRole="button"
-          accessibilityState={{ disabled }}
-          style={disabled && styles.dim}>
-          <AppText variant="heading">{t('common.save')}</AppText>
-        </Pressable>
-      </View>
-      {ready && (
-        <KeyboardAvoidingView style={styles.fill} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-          <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-            {children}
-          </ScrollView>
-        </KeyboardAvoidingView>
-      )}
-    </SafeAreaView>
+    <>
+      <SafeAreaView
+        // iOS modals are page sheets that already sit below the status bar.
+        edges={Platform.OS === 'ios' ? ['bottom'] : ['top', 'bottom']}
+        style={[styles.fill, { backgroundColor: colors.background }]}>
+        <View style={[styles.header, { borderBottomColor: colors.border }]}>
+          <Pressable onPress={() => router.back()} hitSlop={spacing.md} accessibilityRole="button">
+            <AppText tone="secondary">{t('common.cancel')}</AppText>
+          </Pressable>
+          <AppText variant="heading" style={styles.title} numberOfLines={1}>
+            {title}
+          </AppText>
+          <Pressable
+            onPress={onSave}
+            disabled={disabled}
+            hitSlop={spacing.md}
+            accessibilityRole="button"
+            accessibilityState={{ disabled }}
+            style={disabled && styles.dim}>
+            <AppText variant="heading">{t('common.save')}</AppText>
+          </Pressable>
+        </View>
+        {ready && (
+          <KeyboardAvoidingView style={styles.fill} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+            <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+              {children}
+            </ScrollView>
+          </KeyboardAvoidingView>
+        )}
+      </SafeAreaView>
+      <SheetLockCover />
+    </>
   );
 }
 

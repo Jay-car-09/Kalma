@@ -1,6 +1,7 @@
 // The phone's own Face ID / fingerprint, with the phone passcode as fallback. No Kalma PIN.
-// The library loads only when first used, and every call is caught: if anything here fails,
-// Kalma lets the user in rather than locking them out.
+// The library loads only when first used, and every call is caught. An error in the unlock
+// prompt keeps the app locked (Unlock tries again); only a phone with no screen lock turns the
+// lock off, so nobody is trapped.
 
 type LocalAuth = typeof import('expo-local-authentication');
 

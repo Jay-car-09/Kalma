@@ -64,7 +64,7 @@ describe('CSV export', () => {
 
   it('payments file: kinds, signed amounts, settled due date; deleted payments left out', async () => {
     const card = await trackers.createTracker(input(), true);
-    const kept = await payments.markPaid(card, { amountCentavos: 245050, paidOn: '2026-11-14', note: 'GCash' });
+    await payments.markPaid(card, { amountCentavos: 245050, paidOn: '2026-11-14', note: 'GCash' });
     await payments.deletePayment(await payments.markPaid(card, { amountCentavos: 100, paidOn: '2026-11-20', note: null }));
     // ₱10,000 − ₱2,450.50 paid = ₱7,549.50 left; setting it to ₱7,000 saves −₱549.50
     await payments.updateRemainingBalance(card, 700000);
@@ -76,7 +76,6 @@ describe('CSV export', () => {
     expect(rows.find((r) => r.includes('Balance adjustment'))).toMatch(
       /^BPI Card,Balance adjustment,-549\.50,\d{4}-\d{2}-\d{2},,$/,
     );
-    expect(kept).toBeTruthy();
   });
 
   it('headers follow the app language', async () => {

@@ -75,13 +75,14 @@ function RootNavigator() {
   return (
     <ThemeProvider value={navigationTheme}>
       <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="tracker-sheet" options={{ presentation: 'modal' }} />
-        <Stack.Screen name="payment-sheet" options={{ presentation: 'modal' }} />
-        <Stack.Screen name="balance-sheet" options={{ presentation: 'modal' }} />
-      </Stack>
-      <AppLockGate />
+      <AppLockGate>
+        <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="tracker-sheet" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="payment-sheet" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="balance-sheet" options={{ presentation: 'modal' }} />
+        </Stack>
+      </AppLockGate>
     </ThemeProvider>
   );
 }

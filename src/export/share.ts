@@ -7,8 +7,7 @@ export async function shareCsv(fileName: string, content: string, dialogTitle: s
   const Sharing = require('expo-sharing') as typeof import('expo-sharing');
 
   const file = new File(Paths.cache, fileName);
-  if (file.exists) file.delete();
-  file.create();
+  file.create({ overwrite: true });
   await file.write(content); // UTF-8; the content starts with a BOM for Excel
 
   if (!(await Sharing.isAvailableAsync())) throw new Error('Sharing is not available on this device');
