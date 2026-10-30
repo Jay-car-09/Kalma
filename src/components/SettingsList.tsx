@@ -69,6 +69,18 @@ export function ActionRow({ label, icon, onPress, disabled }: ActionRowProps) {
   );
 }
 
+// A label with a read-only value, e.g. "Email · juan@example.com".
+export function InfoRow({ label, value }: { label: string; value: string }) {
+  return (
+    <View style={[styles.row, styles.wrap]}>
+      <AppText style={styles.label}>{label}</AppText>
+      <AppText tone="secondary" style={styles.value}>
+        {value}
+      </AppText>
+    </View>
+  );
+}
+
 type SwitchRowProps = {
   label: string;
   hint?: string;
@@ -118,5 +130,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
   },
   label: { flex: 1, gap: spacing.xs },
+  wrap: { flexWrap: 'wrap' },
+  value: { flexShrink: 1 },
   pressed: { opacity: 0.6 },
 });

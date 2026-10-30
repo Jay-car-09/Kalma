@@ -10,6 +10,10 @@ App lock (Phase 1F):
 - [ ] **Return to a locked app:** cancel the unlock prompt, leave the app, then come back. The prompt should appear again by itself.
 - [ ] **iPhone Face ID:** in your own build (Phase 3), the prompt should use Face ID, not only the passcode.
 
+Accounts (Phase 2C):
+- [ ] **Security self-test** (Account → Developer) shows PASS against the project testers will use, and step 4 says "unchanged".
+- [ ] **Supabase → Authentication → Email:** code expiry is 10 minutes (600 seconds). The app tells "wrong code" from "expired code" using that time.
+
 ## 2. Decisions for the owner
 
 a. **Android app-switcher cover.** If the check in 1 shows amounts, the reliable fix is Android's "secure screen" flag. It needs a new library, `expo-screen-capture`, which you would have to add to CLAUDE.md section 9. Side effect: nobody can take screenshots of Kalma while App lock is on.

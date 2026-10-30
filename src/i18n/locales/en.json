@@ -47,7 +47,76 @@
   },
   "account": {
     "title": "Account",
-    "empty": "You're using guest mode. Everything stays on this phone. Sign-in and backup will come in a later update."
+    "backupTitle": "Back up and sync across your phones",
+    "backupBody": "Right now you're a guest, and everything stays on this phone.",
+    "signInButton": "Create account / Sign in",
+    "yourAccount": "Your account",
+    "email": "Email",
+    "status": "Status",
+    "signedIn": "Signed in",
+    "plan": "Plan",
+    "free": "Free",
+    "paid": "Paid",
+    "lastSynced": "Last synced",
+    "comingLater": "Coming in a later phase",
+    "signOut": "Sign out",
+    "deleteAccount": "Delete account"
+  },
+  "signIn": {
+    "title": "Create account or sign in",
+    "intro": "Enter your email and we'll send you a 6-digit code. No password needed.",
+    "email": "Email",
+    "badEmail": "That doesn't look like an email address. Check it and try again.",
+    "send": "Send code",
+    "codeTitle": "Enter the code",
+    "codeIntro": "We sent a 6-digit code to {{email}}. It may take a minute to arrive.",
+    "code": "6-digit code",
+    "verify": "Sign in",
+    "resend": "Resend code",
+    "resendIn": "Resend code in {{seconds}}s",
+    "differentEmail": "Use a different email",
+    "problem": {
+      "wrongCode": "That code didn't work. Check the email and try again.",
+      "expired": "That code has expired. Tap Resend code to get a new one.",
+      "tooMany": "Too many tries for now. Wait a few minutes, then try again.",
+      "offline": "Can't connect right now. Check your internet and try again.",
+      "unknown": "Something went wrong. Please try again in a minute."
+    }
+  },
+  "selfTest": {
+    "title": "Security self-test",
+    "intro": "Checks, on the real cloud, that one account can't see or change another account's data. You need two test accounts: A and B. Only a test row is used; your trackers are not touched.",
+    "signedInAs": "Signed in as {{email}}",
+    "signInFirst": "Sign in first.",
+    "steps": "Steps",
+    "step1": "1. As account A: create a test row",
+    "step2": "2. Switch account",
+    "step3": "3. As account B: try to read, change and delete it",
+    "step4": "4. As account A again: check and clean up",
+    "created": "Created a test row as account A. Next: step 2, and sign in as account B.",
+    "alreadyCreated": "A test row already exists. Go on with the next step, or clean it up as account A first.",
+    "noTest": "There's no test row yet. Start with step 1 as account A.",
+    "needB": "You're signed in as account A. Switch to account B first (step 2).",
+    "needA": "Sign in as account A, the one that created the test row, to clean up.",
+    "read": "Read: {{result}}",
+    "change": "Change: {{result}}",
+    "remove": "Delete: {{result}}",
+    "attempt": {
+      "blocked": "blocked",
+      "allowed": "ALLOWED. This is a problem.",
+      "error": "couldn't check"
+    },
+    "pass": "PASS. Account B couldn't read, change or delete account A's row. Next: switch back to account A and clean up.",
+    "fail": "FAIL. Account B could reach account A's row. Don't use real data until this is fixed.",
+    "incomplete": "Not finished: a check couldn't run. Check the internet connection and try step 3 again.",
+    "unchanged": "The test row was still there and unchanged. It's now deleted. All done.",
+    "changed": "FAIL. The test row had been changed by another account. It's now deleted.",
+    "missing": "FAIL. The test row was gone, so another account could delete it.",
+    "failed": "That step didn't work. Check the internet connection and try again.",
+    "last": {
+      "pass": "Last account B check: PASS",
+      "fail": "Last account B check: FAIL"
+    }
   },
   "settings": {
     "title": "Settings",

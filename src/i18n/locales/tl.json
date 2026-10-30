@@ -47,7 +47,76 @@
   },
   "account": {
     "title": "Account",
-    "empty": "Naka-guest mode ka. Sa phone na ito lang naka-save ang lahat. Darating ang sign-in at backup sa susunod na update."
+    "backupTitle": "I-back up at i-sync sa iyong mga phone",
+    "backupBody": "Guest ka ngayon, kaya nasa phone na ito lang ang lahat.",
+    "signInButton": "Gumawa ng account / Mag-sign in",
+    "yourAccount": "Ang iyong account",
+    "email": "Email",
+    "status": "Status",
+    "signedIn": "Naka-sign in",
+    "plan": "Plan",
+    "free": "Free",
+    "paid": "Paid",
+    "lastSynced": "Huling sync",
+    "comingLater": "Darating sa susunod na phase",
+    "signOut": "Mag-sign out",
+    "deleteAccount": "I-delete ang account"
+  },
+  "signIn": {
+    "title": "Gumawa ng account o mag-sign in",
+    "intro": "Ilagay ang email mo at padadalhan ka namin ng 6-digit code. Walang password na kailangan.",
+    "email": "Email",
+    "badEmail": "Mukhang hindi ito email address. Pakitingnan at subukan ulit.",
+    "send": "Ipadala ang code",
+    "codeTitle": "Ilagay ang code",
+    "codeIntro": "Nagpadala kami ng 6-digit code sa {{email}}. Baka umabot ng isang minuto bago dumating.",
+    "code": "6-digit code",
+    "verify": "Mag-sign in",
+    "resend": "Ipadala ulit ang code",
+    "resendIn": "Maipapadala ulit sa {{seconds}}s",
+    "differentEmail": "Gumamit ng ibang email",
+    "problem": {
+      "wrongCode": "Hindi gumana ang code na iyan. Tingnan ang email at subukan ulit.",
+      "expired": "Expired na ang code na iyan. I-tap ang Ipadala ulit para sa bago.",
+      "tooMany": "Masyadong maraming subok sa ngayon. Maghintay ng ilang minuto, saka subukan ulit.",
+      "offline": "Hindi maka-connect ngayon. Tingnan ang internet mo at subukan ulit.",
+      "unknown": "May nangyaring mali. Pakisubukan ulit pagkalipas ng isang minuto."
+    }
+  },
+  "selfTest": {
+    "title": "Security self-test",
+    "intro": "Sinusuri sa totoong cloud na hindi makikita o mababago ng isang account ang data ng ibang account. Kailangan mo ng dalawang test account: A at B. Test row lang ang gagamitin; hindi gagalawin ang mga tracker mo.",
+    "signedInAs": "Naka-sign in bilang {{email}}",
+    "signInFirst": "Mag-sign in muna.",
+    "steps": "Mga hakbang",
+    "step1": "1. Bilang account A: gumawa ng test row",
+    "step2": "2. Magpalit ng account",
+    "step3": "3. Bilang account B: subukang basahin, baguhin at i-delete ito",
+    "step4": "4. Bilang account A ulit: tingnan at linisin",
+    "created": "Nakagawa ng test row bilang account A. Susunod: hakbang 2, at mag-sign in bilang account B.",
+    "alreadyCreated": "May test row na. Ituloy ang susunod na hakbang, o linisin muna ito bilang account A.",
+    "noTest": "Wala pang test row. Magsimula sa hakbang 1 bilang account A.",
+    "needB": "Naka-sign in ka bilang account A. Magpalit muna sa account B (hakbang 2).",
+    "needA": "Mag-sign in bilang account A, ang gumawa ng test row, para malinis ito.",
+    "read": "Basahin: {{result}}",
+    "change": "Baguhin: {{result}}",
+    "remove": "I-delete: {{result}}",
+    "attempt": {
+      "blocked": "na-block",
+      "allowed": "PINAYAGAN. May problema ito.",
+      "error": "hindi masuri"
+    },
+    "pass": "PASS. Hindi nabasa, nabago o na-delete ng account B ang row ng account A. Susunod: bumalik sa account A at linisin.",
+    "fail": "FAIL. Naabot ng account B ang row ng account A. Huwag munang gumamit ng totoong data hangga't hindi ito naaayos.",
+    "incomplete": "Hindi pa tapos: may check na hindi tumakbo. Tingnan ang internet at subukan ulit ang hakbang 3.",
+    "unchanged": "Nandoon pa ang test row at walang nagbago. Na-delete na ito. Tapos na.",
+    "changed": "FAIL. Binago ng ibang account ang test row. Na-delete na ito.",
+    "missing": "FAIL. Wala na ang test row, kaya na-delete ito ng ibang account.",
+    "failed": "Hindi gumana ang hakbang na iyan. Tingnan ang internet at subukan ulit.",
+    "last": {
+      "pass": "Huling check ng account B: PASS",
+      "fail": "Huling check ng account B: FAIL"
+    }
   },
   "settings": {
     "title": "Settings",

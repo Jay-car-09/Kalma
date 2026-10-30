@@ -25,7 +25,7 @@ export function Screen({ title, action, onBack, children }: ScreenProps) {
   const { t } = useTranslation();
   return (
     <SafeAreaView edges={['top']} style={[styles.safe, { backgroundColor: colors.background }]}>
-      <ScrollView contentContainerStyle={styles.content}>
+      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         {onBack && (
           <Pressable
             onPress={() => onBack()}

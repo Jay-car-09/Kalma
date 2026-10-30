@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { AppState } from 'react-native';
 
 import { EncryptedSessionStorage } from './sessionStorage';
 
@@ -30,6 +31,12 @@ export function getSupabase(): SupabaseClient {
       persistSession: true,
       detectSessionInUrl: false,
     },
+  });
+  // Supabase's React Native pattern: refresh the session only while the app is open.
+  const auth = client.auth;
+  AppState.addEventListener('change', (state) => {
+    if (state === 'active') auth.startAutoRefresh();
+    else auth.stopAutoRefresh();
   });
   return client;
 }

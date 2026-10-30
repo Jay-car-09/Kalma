@@ -11,6 +11,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 
+import { SessionProvider } from '@/cloud/session';
 import { prepareDatabase } from '@/data/db';
 import { useSyncLanguage } from '@/i18n/useSyncLanguage';
 import { AppLockGate } from '@/lock/AppLockGate';
@@ -23,7 +24,9 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   return (
     <SettingsProvider>
-      <RootNavigator />
+      <SessionProvider>
+        <RootNavigator />
+      </SessionProvider>
     </SettingsProvider>
   );
 }
