@@ -80,8 +80,10 @@
       "expired": "Expired na ang code na iyan. I-tap ang Ipadala ulit para sa bago.",
       "tooMany": "Masyadong maraming subok sa ngayon. Maghintay ng ilang minuto, saka subukan ulit.",
       "offline": "Hindi maka-connect ngayon. Tingnan ang internet mo at subukan ulit.",
+      "serverError": "May problema sa servers ng Kalma. Pakisubukan ulit pagkalipas ng ilang minuto.",
       "unknown": "May nangyaring mali. Pakisubukan ulit pagkalipas ng isang minuto."
-    }
+    },
+    "devDetail": "Developer info: {{detail}}"
   },
   "selfTest": {
     "title": "Security self-test",

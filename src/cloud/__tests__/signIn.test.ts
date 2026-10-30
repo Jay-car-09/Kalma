@@ -56,6 +56,8 @@ describe('sign-in errors', () => {
     expect(describeAuthError(new AuthApiError('x', 429, 'over_email_send_rate_limit'))).toBe('tooMany');
     expect(describeAuthError(new AuthApiError('x', 429, 'over_request_rate_limit'))).toBe('tooMany');
     expect(describeAuthError(new AuthRetryableFetchError('Network request failed', 0))).toBe('offline');
+    // A server error (e.g. the code email failed to send) is not "no internet".
+    expect(describeAuthError(new AuthRetryableFetchError('Error sending magic link email', 500))).toBe('serverError');
     expect(describeAuthError(new AuthApiError('x', 500, 'unexpected_failure'))).toBe('unknown');
     expect(describeAuthError(new Error('boom'))).toBe('unknown');
   });

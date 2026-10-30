@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
-import { describeAuthError, isEmail, normalizeEmail, sendCode } from '@/cloud/signIn';
+import { isEmail, normalizeEmail, problemText, sendCode } from '@/cloud/signIn';
 import { AppText } from '@/components/AppText';
 import { Button } from '@/components/Button';
 import { Screen } from '@/components/Screen';
@@ -30,7 +30,7 @@ export default function SignInScreen() {
       await sendCode(clean);
       router.push({ pathname: '/account/verify', params: { email: clean } });
     } catch (error) {
-      setProblem(t(`signIn.problem.${describeAuthError(error)}`));
+      setProblem(problemText(t, error));
     } finally {
       setSending(false);
     }

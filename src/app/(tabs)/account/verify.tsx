@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
-import { describeAuthError, resendSecondsLeft, sendCode, verifyCode } from '@/cloud/signIn';
+import { problemText, resendSecondsLeft, sendCode, verifyCode } from '@/cloud/signIn';
 import { AppText } from '@/components/AppText';
 import { Button } from '@/components/Button';
 import { Screen } from '@/components/Screen';
@@ -38,7 +38,7 @@ export default function VerifyScreen() {
       router.dismissTo('/account'); // the Account tab now shows the signed-in state
     } catch (error) {
       setCode('');
-      setProblem(t(`signIn.problem.${describeAuthError(error, Date.now() - sentAt)}`));
+      setProblem(problemText(t, error, Date.now() - sentAt));
     } finally {
       setBusy(false);
     }
@@ -60,7 +60,7 @@ export default function VerifyScreen() {
       setNow(sent);
       setCode('');
     } catch (error) {
-      setProblem(t(`signIn.problem.${describeAuthError(error)}`));
+      setProblem(problemText(t, error));
     } finally {
       setBusy(false);
     }

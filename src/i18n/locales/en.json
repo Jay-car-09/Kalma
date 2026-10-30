@@ -80,8 +80,10 @@
       "expired": "That code has expired. Tap Resend code to get a new one.",
       "tooMany": "Too many tries for now. Wait a few minutes, then try again.",
       "offline": "Can't connect right now. Check your internet and try again.",
+      "serverError": "Kalma's servers had a problem. Please try again in a few minutes.",
       "unknown": "Something went wrong. Please try again in a minute."
-    }
+    },
+    "devDetail": "Developer info: {{detail}}"
   },
   "selfTest": {
     "title": "Security self-test",

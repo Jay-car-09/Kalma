@@ -1,4 +1,5 @@
 import { isAuthError, isAuthRetryableFetchError } from '@supabase/supabase-js';
+import type { TFunction } from 'i18next';
 
 import { getSupabase } from './supabase';
 
@@ -22,11 +23,12 @@ export function resendSecondsLeft(sentAt: number, now: number): number {
   return Math.min(RESEND_SECONDS, Math.max(0, left)); // a clock set backwards never shows more than 60
 }
 
-export type AuthProblem = 'wrongCode' | 'expired' | 'tooMany' | 'offline' | 'unknown';
+export type AuthProblem = 'wrongCode' | 'expired' | 'tooMany' | 'offline' | 'serverError' | 'unknown';
 
 /** Turns a sign-in failure into one of the calm messages. Raw error text is never shown. */
 export function describeAuthError(error: unknown, codeAgeMs = 0): AuthProblem {
-  if (isAuthRetryableFetchError(error)) return 'offline';
+  // Supabase reports "no answer" (status 0) and server errors (5xx, e.g. the code email failed to send) the same way.
+  if (isAuthRetryableFetchError(error)) return error.status === 0 ? 'offline' : 'serverError';
   if (!isAuthError(error)) return 'unknown';
   if (error.status === 429 || error.code === 'over_request_rate_limit' || error.code === 'over_email_send_rate_limit') {
     return 'tooMany';
@@ -34,6 +36,14 @@ export function describeAuthError(error: unknown, codeAgeMs = 0): AuthProblem {
   // Supabase uses one code for a wrong code and an expired one; the code's age tells them apart.
   if (error.code === 'otp_expired') return codeAgeMs >= CODE_LIFETIME_MS ? 'expired' : 'wrongCode';
   return 'unknown';
+}
+
+/** The calm message for a failure. Dev builds add the status and code (never the raw text) to find the cause. */
+export function problemText(t: TFunction, error: unknown, codeAgeMs = 0): string {
+  const text = t(`signIn.problem.${describeAuthError(error, codeAgeMs)}`);
+  if (!__DEV__) return text;
+  const detail = isAuthError(error) ? `${error.status ?? '-'} ${error.code ?? error.name}` : 'not-auth-error';
+  return `${text}\n${t('signIn.devDetail', { detail })}`;
 }
 
 /** Emails a 6-digit code. A new email gets an account, so sign-up and sign-in are one flow. Throws on failure. */
